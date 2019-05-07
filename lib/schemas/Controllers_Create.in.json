@@ -1,0 +1,171 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90
+        },
+        "name": {
+            "required": true,
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 31,
+            "pattern": "^[a-zA-Z0-9](-?[a-zA-Z0-9])*$"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "allOf": [
+                        {
+                            "description": "An Azure resource.",
+                            "properties": {
+                                "id": {
+                                    "description": "Fully qualified resource Id for the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "The name of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the resource.",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "x-ms-azure-resource": true,
+                            "type": "object"
+                        }
+                    ],
+                    "description": "The resource model definition for a ARM tracked top level resource.",
+                    "properties": {
+                        "location": {
+                            "description": "Region where the Azure resource is located.",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Tags for the Azure resource.",
+                            "type": "object",
+                            "x-ms-mutability": [
+                                "read",
+                                "create",
+                                "update"
+                            ]
+                        }
+                    },
+                    "type": "object"
+                }
+            ],
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "dataPlaneFqdn": {
+                            "description": "DNS name for accessing DataPlane services",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "hostSuffix": {
+                            "description": "DNS suffix for public endpoints running in the Azure Dev Spaces Controller.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "provisioningState": {
+                            "description": "Provisioning state of the Azure Dev Spaces Controller.",
+                            "enum": [
+                                "Succeeded",
+                                "Failed",
+                                "Canceled",
+                                "Updating",
+                                "Creating",
+                                "Deleting",
+                                "Deleted"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ProvisioningState"
+                            }
+                        },
+                        "targetContainerHostCredentialsBase64": {
+                            "description": "Credentials of the target container host (base64).",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create"
+                            ]
+                        },
+                        "targetContainerHostResourceId": {
+                            "description": "Resource ID of the target container host",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "read",
+                                "create"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "targetContainerHostResourceId",
+                        "targetContainerHostCredentialsBase64"
+                    ]
+                },
+                "sku": {
+                    "description": "Model representing SKU for Azure Dev Spaces Controller.",
+                    "properties": {
+                        "name": {
+                            "description": "The name of the SKU for Azure Dev Spaces Controller.",
+                            "enum": [
+                                "S1"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuName"
+                            }
+                        },
+                        "tier": {
+                            "description": "The tier of the SKU for Azure Dev Spaces Controller.",
+                            "enum": [
+                                "Standard"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuTier"
+                            }
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties",
+                "sku",
+                "location"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

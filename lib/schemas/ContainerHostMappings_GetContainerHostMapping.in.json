@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90
+        },
+        "location": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Container host mapping object specifying the Container host resource ID and its associated Controller resource.",
+            "properties": {
+                "containerHostResourceId": {
+                    "description": "ARM ID of the Container Host resource",
+                    "type": "string"
+                },
+                "mappedControllerResourceId": {
+                    "description": "ARM ID of the mapped Controller resource",
+                    "readOnly": true,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

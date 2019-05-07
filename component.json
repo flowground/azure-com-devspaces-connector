@@ -1,0 +1,202 @@
+{
+    "title": "DevSpacesManagement",
+    "description": "Dev Spaces REST API",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/devspaces/2019-01-01-preview/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists operations for the resource provider.",
+            "description": "Lists all the supported operations by the Microsoft.DevSpaces resource provider along with their description.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_List": {
+            "main": "./lib/actions/Controllers_List.js",
+            "title": "Lists the Azure Dev Spaces Controllers in a subscription.",
+            "description": "Lists all the Azure Dev Spaces Controllers with their properties in the subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_ListByResourceGroup": {
+            "main": "./lib/actions/Controllers_ListByResourceGroup.js",
+            "title": "Lists the Azure Dev Spaces Controllers in a resource group.",
+            "description": "Lists all the Azure Dev Spaces Controllers with their properties in the specified resource group and subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_Delete": {
+            "main": "./lib/actions/Controllers_Delete.js",
+            "title": "Deletes an Azure Dev Spaces Controller.",
+            "description": "Deletes an existing Azure Dev Spaces Controller.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_Get": {
+            "main": "./lib/actions/Controllers_Get.js",
+            "title": "Gets an Azure Dev Spaces Controller.",
+            "description": "Gets the properties for an Azure Dev Spaces Controller.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_Update": {
+            "main": "./lib/actions/Controllers_Update.js",
+            "title": "Updates an Azure Dev Spaces Controller.",
+            "description": "Updates the properties of an existing Azure Dev Spaces Controller with the specified update parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_Create": {
+            "main": "./lib/actions/Controllers_Create.js",
+            "title": "Creates an Azure Dev Spaces Controller.",
+            "description": "Creates an Azure Dev Spaces Controller with the specified create parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Controllers_ListConnectionDetails": {
+            "main": "./lib/actions/Controllers_ListConnectionDetails.js",
+            "title": "Lists connection details for an Azure Dev Spaces Controller.",
+            "description": "Lists connection details for the underlying container resources of an Azure Dev Spaces Controller.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Controllers_ListConnectionDetails.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ContainerHostMappings_GetContainerHostMapping": {
+            "main": "./lib/actions/ContainerHostMappings_GetContainerHostMapping.js",
+            "title": "Returns container host mapping object for a container host resource ID if an associated controller exists.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ContainerHostMappings_GetContainerHostMapping.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
